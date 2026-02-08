@@ -1,103 +1,121 @@
-# A.D.A.M. v0.1 (Infrastructure-Independent Distributed Search Modules) 🤖
+# A.D.A.M. v0.1 (Altyapıdan Bağımsız Dağıtık Arama Modülleri) 🤖
 
-**A.D.A.M. v0.1** is a low-cost, mobile robotic sensor platform designed as a "forward eye" for search and rescue operations in disaster zones where critical infrastructure (GSM, GPS, Internet) has collapsed. This project serves as the first hardware iteration (v0.1) of the "Soldier" mobile units, aimed at establishing a robust Proof-of-Concept (PoC) for life detection in hazardous environments.
-
----
-
-### ⚠️ Project Status
-
-**Current Stage:** This project is currently in the **application approval stage** for the TÜBİTAK 2209-A Research Project Program. It is **not yet funded or officially supported** by any institution; all developmental progress is currently conceptual or at the preliminary prototyping stage.
+**A.D.A.M. v0.1**, kritik altyapıların (GSM, GPS, İnternet) çöktüğü afet bölgelerinde arama-kurtarma operasyonları için "ileri göz" olarak tasarlanmış, düşük maliyetli bir mobil robotik sensör platformudur. Bu proje, tehlikeli ortamlarda canlı tespiti için sağlam bir kavram kanıtı (PoC) oluşturmayı amaçlayan "Asker" mobil birimlerinin ilk donanım versiyonudur.
 
 ---
 
-### 🌟 Key Features (Sensor Fusion)
+### ⚠️ Proje Durumu
 
-The platform integrates multiple sensing modalities into a single STM32-based embedded system to navigate and detect life under rubble:
+| Parametre | Mevcut Durum |
+| --- | --- |
+| **Program** | TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı 
+
+ |
+| **Aşama** | Başvuru Değerlendirme Süreci 
+
+ |
+| **Destek Durumu** | Henüz resmi bir destek/fon almamıştır; tüm süreçler konsept aşamasındadır. |
+
+---
+
+### 🌟 Temel Özellikler ve Sensör Füzyonu
+
+Enkaz altındaki yaşam belirtilerini tespit etmek için kullanılan sensör mimarisi aşağıdadır:
+
+| Sensör | İşlev | Teknik Detay |
+| --- | --- | --- |
+| **Termal Kamera** | Canlı Tespiti | MLX90640 ile ısı imzası ve hotspot tespiti.
+
+ |
+| **Mikrofon** | Ses Tespiti | Yardım çığlıklarını veya yapısal sesleri yakalama.
+
+ |
+| **ToF Lazer** | Uzamsal Farkındalık | VL53L0X ile çarpışma önleme ve mesafe ölçümü.
+
+ |
+| **IMU** | Stabilite | MPU-6050 ile robotun denge ve yönelim takibi.
+
+ |
+
+---
+
+### 🏗️ Sistem Mimarisi (v0.1)
+
+Bu versiyon, radyo frekanslarının riskli olduğu bölgelerde güvenilir veri akışı için kablolu bir yapıya odaklanır:
+
+| Bileşen | Detay |
+| --- | --- |
+| **Ana İşlemci** | STM32 Geliştirme Kartı (Gömülü C/C++ ile programlanmıştır).
+
+ |
+| **Hareket Sistemi** | Enkaz üzerinde manevra kabiliyeti için paletli robot şasisi.
+
+ |
+| **Bağlantı** | Komuta Merkezi terminaline USB-UART üzerinden kablolu seri iletişim.
+
+ |
+| **Arayüz** | Isı, mesafe ve ses seviyelerinin gerçek zamanlı izlendiği terminal.
+
+ |
+
+---
+
+### 🎯 Başarı Kriteri: "Kör Operatör" Testi
+
+Platformun başarısı, operatörün robotu fiziksel olarak görmeden, sadece sensör verilerini kullanarak engelli bir parkuru tamamlamasıyla ölçülür:
 
 * 
-**Thermal Imaging:** MLX90640 sensor for detecting heat signatures/hotspots of survivors.
+**Görev**: Sensör verilerine bakarak engellere çarpmadan ilerleme.
 
 
 * 
-**Acoustic Detection:** High-sensitivity microphone for locating cries for help or structural sounds.
-
-
-* 
-**Spatial Awareness:** Forward-facing ToF (Time-of-Flight) Laser for collision avoidance and distance measurement.
-
-
-* 
-**Stability:** MPU-6050 IMU to monitor the robot's orientation and balance in chaotic terrain.
+**Hedef**: Parkur sonundaki ısı ve ses kaynağının başarıyla raporlanması.
 
 
 
 ---
 
-### 🏗️ System Architecture
+### 🗺️ Gelecek Yol Haritası
 
-The v0.1 architecture focuses on a "Wired Command Center" model to ensure reliable data transmission in radio-silent zones:
+| Sürüm | Temel Hedef | Teknoloji |
+| --- | --- | --- |
+| **v1.0 - v2.0** | Kablosuz İletişim | Kendi kendini onaran LoRa Mesh ağ yapısı.
 
-* 
-**Processor:** STM32 Development Board (programmed in Embedded C/C++).
+ |
+| **v3.0** | Otonom Sürü | Gelişmiş sürü zekası algoritmaları.
 
-
-* 
-**Locomotion:** Tracked robot chassis for superior maneuverability over debris.
-
-
-* 
-**Connectivity:** Serial communication (USB-UART) via cable to a Command Center terminal.
-
-
-* 
-**Interface:** Real-time monitoring of sensor telemetry (Temperature, Distance, Audio Levels).
-
-
+ |
 
 ---
 
-### 🎯 Success Criterion: The "Blind Operator" Test
+### 🛠️ Donanım Envanteri
 
-The platform's success is measured by its ability to navigate a complex indoor obstacle course without direct line-of-sight. The operator must guide the unit solely through sensor feedback to identify heat and sound sources at the end of the course.
+| Malzeme | Görev |
+| --- | --- |
+| **ST Nucleo-F411RE** | Ana Kontrol Birimi 
+
+ |
+| **MLX90640** | Termal Görüntüleme 
+
+ |
+| **VL53L0X** | ToF Lazer Mesafe Sensörü 
+
+ |
+| **MPU-6050** | 6 Eksenli İvme ve Gyro 
+
+ |
+| **KY-038** | Ses Algılama 
+
+ |
+| **3S Lipo Pil** | 11.1V Güç Kaynağı 
+
+ |
 
 ---
 
-### 🗺️ Future Roadmap
+### 🛡️ Etik ve Güvenlik Standartları
 
-* 
-**v1.0 - v2.0:** Implementation of self-healing LoRa Mesh Networks for wireless operation.
-
-
-* 
-**v3.0:** Development of autonomous swarm intelligence algorithms.
+* Lehimleme işlemleri sırasında koruyucu gözlük, eldiven ve uygun havalandırma kullanımı esastır.
 
 
-
----
-
-### 🛡️ Ethical & Safety Standards
-
-Development follows strict safety protocols for soldering and electronics handling, including proper ventilation and personal protective equipment (PPE). The project is designed with a "human-first" philosophy, aiming to reduce the risk to first responders.
-
----
-
-### 🛠️ Hardware Stack
-
-* 
-**Main Micro:** ST Nucleo - F411RE 
-
-
-* 
-**Thermal:** MLX90640 
-
-
-* 
-**Distance:** VL53L0X ToF 
-
-
-* 
-**IMU:** MPU-6050 
-
-
-* 
-**Power:** 11.1V 3S LiPo
+* Proje, ilk müdahalecilerin (AFAD, itfaiye vb.) hayatını riske atmadan veri toplamasını amaçlayan "önce insan" felsefesiyle tasarlanmıştır.
