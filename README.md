@@ -1,67 +1,80 @@
-# A.D.A.M. v0.1 (Altyapıdan Bağımsız Dağıtık Arama Modülleri) 🤖
+# A.D.A.M. v0.1 (Infrastructure-Independent Distributed Search Modules) 🤖
 
-**A.D.A.M. v0.1**, kritik altyapıların (GSM, GPS, İnternet) çöktüğü afet bölgelerinde arama-kurtarma operasyonları için "ileri göz" olarak tasarlanmış, düşük maliyetli bir mobil robotik sensör platformudur. Bu proje, tehlikeli ortamlarda canlı tespiti için sağlam bir kavram kanıtı (PoC) oluşturmayı amaçlayan "Asker" mobil birimlerinin ilk donanım versiyonudur.
+**A.D.A.M. v0.1** is a low-cost, mobile robotic sensor platform designed as a "forward eye" for search and rescue operations in disaster zones where critical infrastructure (GSM, GPS, Internet) has collapsed. This project represents the first hardware iteration (v0.1) of the "Soldier" mobile units, aimed at establishing a robust Proof-of-Concept (PoC) for life detection in hazardous and inaccessible environments.
 
 ---
 
-### ⚠️ Proje Durumu
+### ⚠️ Project Status
 
-| Parametre | Mevcut Durum |
+| Parameter | Current Status |
 | :--- | :--- |
-| **Program** | TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı |
-| **Aşama** | Başvuru Değerlendirme Süreci |
-| **Destek Durumu** | Henüz resmi bir destek/fon almamıştır; tüm süreçler konsept aşamasındadır. |
+| **Program** | TÜBİTAK 2209-A University Students Research Projects Support Program |
+| **Stage** | Application / Approval Phase |
+| **Funding Status** | Not yet officially funded; currently at the conceptual and preliminary prototyping stage. |
 
 ---
 
-### 🌟 Temel Özellikler ve Sensör Füzyonu
+### 🌟 Key Features & Sensor Fusion
 
-Enkaz altındaki yaşam belirtilerini tespit etmek için kullanılan sensör mimarisi aşağıdadır:
+The platform utilizes a multi-modal sensor architecture to detect signs of life and navigate through debris:
 
-| Sensör | İşlev | Teknik Detay |
+| Sensor | Function | Technical Detail |
 | :--- | :--- | :--- |
-| **Termal Kamera** | Canlı Tespiti | MLX90640 ile ısı imzası ve hotspot tespiti. |
-| **Mikrofon** | Ses Tespiti | Yardım çığlıklarını veya yapısal sesleri yakalama. |
-| **ToF Lazer** | Uzamsal Farkındalık | VL53L0X ile çarpışma önleme ve mesafe ölçümü. |
-| **IMU** | Stabilite | MPU-6050 ile robotun denge ve yönelim takibi. |
+| **Thermal Camera** | Life Detection | MLX90640 for heat signature and hotspot identification. |
+| **Microphone** | Acoustic Detection | Capturing cries for help or structural vibrations. |
+| **ToF Laser** | Spatial Awareness | VL53L0X for active collision avoidance and ranging. |
+| **IMU** | Stability | MPU-6050 for monitoring robot balance and orientation. |
 
 ---
 
-### 🎯 Başarı Kriteri: "Kör Operatör" Test Senaryosu
+### 🎯 Success Criterion: The "Blind Operator" Test
 
-Platformun başarısı, operatörün robotu fiziksel olarak görmeden, sadece sensör verilerini kullanarak görevini tamamlamasıyla ölçülür:
+The success of the platform is validated through a specialized test scenario where the operator must complete a mission without a direct line-of-sight:
 
-* **Senaryo:** Robot, operatörün görüş alanı dışındaki bir engel parkuruna yerleştirilir. 
-* **Navigasyon:** Operatör, sadece ToF mesafe verilerine bakarak robotu engellere çarpmadan yönlendirir.
-* **Tespit:** Parkur sonundaki gizli ısı kaynağı (Termal) ve ses kaynağı (Mikrofon) başarıyla tespit edilip komuta merkezine raporlandığında test başarılı sayılır.
-
----
-
-### 🗺️ Gelecek Yol Haritası
-
-| Sürüm | Temel Hedef | Teknoloji Odağı |
-| :--- | :--- | :--- |
-| **v1.0 - v2.0** | Kablosuz İletişim | Kendi kendini onaran LoRa Mesh ağ yapısı. |
-| **v3.0** | Otonom Sürü Zekası | Sürü robotu algoritmaları ve engelden otonom kaçınma. |
-| **v4.0** | Gelişmiş Mobilite | Dinamik enkaz tırmanma kabiliyetine sahip şasi güncellemeleri. |
+* **Scenario:** The robot is placed in an obstacle course outside the operator's visual field.
+* **Navigation:** The operator guides the unit solely through real-time ToF distance data.
+* **Detection:** The mission is considered successful once the hidden heat source (Thermal) and sound source (Acoustic) are identified and reported to the command center.
 
 ---
 
-### 🛠️ Donanım Envanteri
+### 🏗️ System Architecture (v0.1)
 
-| Malzeme | Görev |
+The v0.1 iteration focuses on a wired communication backbone to ensure reliability in radio-silent or interference-heavy environments:
+
+| Component | Detail |
 | :--- | :--- |
-| **ST Nucleo-F411RE** | Ana Kontrol Birimi (İşlemci) |
-| **MLX90640** | Termal Görüntüleme Sensörü |
-| **VL53L0X** | ToF Lazer Mesafe Sensörü |
-| **MPU-6050** | 6 Eksenli İvme ve Gyro (IMU) |
-| **KY-038** | Ses Algılama Sensörü (Mikrofon) |
-| **3S Lipo Pil** | 11.1V Sistem Güç Kaynağı |
+| **Processor** | STM32 Microcontroller (Programmed with Embedded C/C++). |
+| **Locomotion** | Tracked chassis for superior maneuverability over rubble and uneven terrain. |
+| **Connectivity** | Wired serial communication (USB-UART) to a Command Center terminal. |
+| **Monitoring** | Real-time terminal interface displaying thermal hotspots, distance, and audio levels. |
 
 ---
 
-### 🛡️ Etik ve Güvenlik Standartları
+### 🗺️ Future Roadmap
 
-* **İş Güvenliği:** Üretim sürecinde lehimleme işlemleri sırasında koruyucu gözlük ve eldiven kullanılır; çalışma alanı aktif olarak havalandırılır.
-* **Toplumsal Fayda:** Proje, AFAD ve itfaiye gibi ekiplerin hayatını riske atmadan "altın saatler" içinde veri toplamasını amaçlayan "önce insan" felsefesiyle geliştirilmektedir.
-* **Veri Etiği:** Toplanan sensör verileri sadece hayat kurtarma amacıyla kullanılır ve otonom sistemlerde etik karar alma sınırlarına sadık kalınır.
+| Version | Objective | Core Technology Focus |
+| :--- | :--- | :--- |
+| **v1.0 - v2.0** | Wireless Operations | Self-healing LoRa Mesh network architecture. |
+| **v3.0** | Swarm Intelligence | Autonomous swarm algorithms and obstacle avoidance. |
+| **v4.0** | Advanced Mobility | Dynamic chassis upgrades for complex vertical debris climbing. |
+
+---
+
+### 🛠️ Hardware Inventory
+
+| Component | Role |
+| :--- | :--- |
+| **ST Nucleo-F411RE** | Main Control Unit (Processor) |
+| **MLX90640** | Thermal Imaging Sensor |
+| **VL53L0X** | Time-of-Flight (ToF) Laser Distance Sensor |
+| **MPU-6050** | 6-Axis Accelerometer and Gyroscope (IMU) |
+| **KY-038** | Audio Detection Sensor (Microphone) |
+| **3S Lipo Battery** | 11.1V System Power Supply |
+
+---
+
+### 🛡️ Ethical & Safety Standards
+
+* **Occupational Safety:** Development follows strict protocols, including the use of safety goggles and gloves during soldering, along with active workspace ventilation.
+* **Social Impact:** Designed with a "human-first" philosophy to enable rescue teams (AFAD, Firefighters, etc.) to gather data during "golden hours" without risking their own lives.
+* **Data Ethics:** Sensor data is processed strictly for life-saving purposes, adhering to ethical boundaries in autonomous decision-making.
