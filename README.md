@@ -1,7 +1,3 @@
-A.D.A.M. v0.1 projen için TÜBİTAK 2209-A başvuru dokümanındaki verileri temel alan, profesyonel ve teknik derinliği olan İngilizce `README.md` taslağı aşağıdadır.
-
----
-
 # A.D.A.M. v0.1 (Infrastructure-Independent Distributed Search Modules) 🤖
 
 **A.D.A.M. v0.1** is a low-cost, mobile robotic sensor platform designed as a "forward eye" for search and rescue operations in disaster zones where critical infrastructure (GSM, GPS, Internet) has collapsed. This project serves as the first hardware iteration (v0.1) of the "Soldier" mobile units, aimed at establishing a robust Proof-of-Concept (PoC) for life detection in hazardous environments.
