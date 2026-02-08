@@ -27,13 +27,41 @@ Enkaz altındaki yaşam belirtilerini tespit etmek için kullanılan sensör mim
 
 ---
 
+### 🎯 Başarı Kriteri: "Kör Operatör" Test Senaryosu
+
+Platformun başarısı, operatörün robotu fiziksel olarak görmeden, sadece sensör verilerini kullanarak görevini tamamlamasıyla ölçülür:
+
+* **Senaryo:** Robot, operatörün görüş alanı dışındaki bir engel parkuruna yerleştirilir. 
+* **Navigasyon:** Operatör, sadece ToF mesafe verilerine bakarak robotu engellere çarpmadan yönlendirir.
+* **Tespit:** Parkur sonundaki gizli ısı kaynağı (Termal) ve ses kaynağı (Mikrofon) başarıyla tespit edilip komuta merkezine raporlandığında test başarılı sayılır.
+
+---
+
+### 🗺️ Gelecek Yol Haritası
+
+| Sürüm | Temel Hedef | Teknoloji Odağı |
+| :--- | :--- | :--- |
+| **v1.0 - v2.0** | Kablosuz İletişim | Kendi kendini onaran LoRa Mesh ağ yapısı. |
+| **v3.0** | Otonom Sürü Zekası | Sürü robotu algoritmaları ve engelden otonom kaçınma. |
+| **v4.0** | Gelişmiş Mobilite | Dinamik enkaz tırmanma kabiliyetine sahip şasi güncellemeleri. |
+
+---
+
 ### 🛠️ Donanım Envanteri
 
 | Malzeme | Görev |
 | :--- | :--- |
-| **ST Nucleo-F411RE** | Ana Kontrol Birimi |
-| **MLX90640** | Termal Görüntüleme |
+| **ST Nucleo-F411RE** | Ana Kontrol Birimi (İşlemci) |
+| **MLX90640** | Termal Görüntüleme Sensörü |
 | **VL53L0X** | ToF Lazer Mesafe Sensörü |
-| **MPU-6050** | 6 Eksenli İvme ve Gyro |
-| **KY-038** | Ses Algılama |
-| **3S Lipo Pil** | 11.1V Güç Kaynağı |
+| **MPU-6050** | 6 Eksenli İvme ve Gyro (IMU) |
+| **KY-038** | Ses Algılama Sensörü (Mikrofon) |
+| **3S Lipo Pil** | 11.1V Sistem Güç Kaynağı |
+
+---
+
+### 🛡️ Etik ve Güvenlik Standartları
+
+* **İş Güvenliği:** Üretim sürecinde lehimleme işlemleri sırasında koruyucu gözlük ve eldiven kullanılır; çalışma alanı aktif olarak havalandırılır.
+* **Toplumsal Fayda:** Proje, AFAD ve itfaiye gibi ekiplerin hayatını riske atmadan "altın saatler" içinde veri toplamasını amaçlayan "önce insan" felsefesiyle geliştirilmektedir.
+* **Veri Etiği:** Toplanan sensör verileri sadece hayat kurtarma amacıyla kullanılır ve otonom sistemlerde etik karar alma sınırlarına sadık kalınır.
